@@ -2,10 +2,24 @@
 
 make
 
+------------ NETTOYER PROJET ------------
+
+make clear
+
 ------------ CREER UN ANNEAU ------------
 
 java Ring [identifiant] [portUPD] [portTCP] [IP] [multiDifIPV4] [multiDifPort]
 
+=> L'entité principale aura ces arguments
+
 Exemple : 
 
-java Ring admin 8000 5042 127.0.0.1 127.0.0.1 4000
+java Ring Admin 8000 5042 127.0.0.1 127.0.0.1 4000
+
+------------ REJOINDRE UN ANNEAU (S'INSERER DEDANS) ------------
+
+java Entity [identifiant] [IP] [portTCP]
+
+Exemple :
+
+java Entity Marie 127.0.0.1 5042

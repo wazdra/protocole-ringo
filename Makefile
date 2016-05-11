@@ -7,7 +7,7 @@ JVM = java
 all: $(CLASSES)
 
 clear :
-	rm -f *.class
+	rm -f *.class *~
 
 %.class : %.java
 	$(JAVAC) $<

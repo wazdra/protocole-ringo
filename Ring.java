@@ -1,13 +1,13 @@
 import java.net.*;
 
 public class Ring {
-    private Entity doubleEntity;
+    private Entity mainEntity;
 
     //--------------------------------
     // Constructeur
 
     public Ring(String identifiant, int portUDP, int portTCP, String ip, String multiDifIPV4, int multiDifPort){
-        this.doubleEntity = new Entity(identifiant, portUDP, portTCP, ip, multiDifIPV4, multiDifPort);
+        this.mainEntity = new Entity(identifiant, portUDP, portTCP, ip, multiDifIPV4, multiDifPort);
     }
 
 
@@ -48,6 +48,7 @@ public class Ring {
 
             System.out.println("Creating a ring...");
             Ring mainRing;
+
             try{
                 String identifiant = args[0];
                 if (identifiant.length() > 8){
@@ -70,15 +71,20 @@ public class Ring {
                 int multiDifPort = Integer.parseInt(args[5]);
                 if (multiDifPort >= 9999) throw new NumberFormatException("multiDifPort"); 
                 mainRing = new Ring(identifiant, portUDP, portTCP, ip, multiDifIPV4, multiDifPort);
+
             } catch(NumberFormatException e){
                 System.out.println("Error while creating : the " + e.getMessage() + " is not a int < 9999");
                 return;
-            }
 
-            // Démarage du serveur
+            } catch(Exception e){
+                return;
+            }
+            System.out.println("Successfully created!");
+
+            mainRing.mainEntity.connect();
         }
         else{
-            System.out.println("Error : Wrong number of arguments.\nHere is the syntax : java ring [identifiant] [portUPD] [portTCP] [IP] [UDP] [multiDifIPV4] [multiDifPort]");
+            System.out.println("Error : Wrong number of arguments.\nHere is the syntax : java Ring [identifiant] [portUPD] [portTCP] [IP] [UDP] [multiDifIPV4] [multiDifPort]");
         }
     }
 }
